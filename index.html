@@ -8,7 +8,7 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@200..800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/src/css/base.css" />
   <link rel="stylesheet" href="/src/css/components.css" />
   <link rel="stylesheet" href="/src/css/sections.css" />
@@ -545,36 +545,68 @@
             <span class="eyebrow" data-reveal>08 — Kind Words</span>
             <h2 class="section-title"><span class="split" data-split="words">What clients say after the install.</span></h2>
           </div>
-          <span class="testi__hint" data-reveal>Drag to explore →</span>
+          <div class="testi__controls" data-reveal>
+            <button class="ctrl ctrl--dark" id="testi-prev" data-magnetic aria-label="Previous testimonial">←</button>
+            <span class="testi__count"><span id="testi-cur">01</span> / <span id="testi-total">06</span></span>
+            <button class="ctrl ctrl--dark" id="testi-next" data-magnetic aria-label="Next testimonial">→</button>
+          </div>
         </header>
       </div>
-      <div class="testi__wrap" data-cursor="drag">
+      <div class="testi__wrap" id="testi-wrap" data-cursor="drag">
         <div class="testi__track" id="testi-track">
           <blockquote class="quote">
-            <p>"Our model in Monument went from drywall to sold-out community showpiece in six weeks. DH understood the buyer before we did."</p>
-            <footer><strong>Regional Sales Manager</strong><span>Production Builder, Monument</span></footer>
+            <span class="quote__mark">“</span>
+            <div class="quote__body">
+              <span class="quote__stars">★★★★★</span>
+              <p>Our model in Monument went from drywall to sold-out community showpiece in six weeks. DH understood the buyer before we did.</p>
+            </div>
+            <footer><span class="quote__avatar">RS</span><div><strong>Regional Sales Manager</strong><span>Production Builder · Monument</span></div></footer>
           </blockquote>
           <blockquote class="quote quote--accent">
-            <p>"Staged on Tuesday, photographed Wednesday, under contract Sunday — $22k over ask. I won't list a vacant home without them."</p>
-            <footer><strong>Listing Broker</strong><span>Castle Rock</span></footer>
+            <span class="quote__mark">“</span>
+            <div class="quote__body">
+              <span class="quote__stars">★★★★★</span>
+              <p>Staged on Tuesday, photographed Wednesday, under contract Sunday — $22k over ask. I won't list a vacant home without them.</p>
+            </div>
+            <footer><span class="quote__avatar">LB</span><div><strong>Listing Broker</strong><span>Castle Rock</span></div></footer>
           </blockquote>
           <blockquote class="quote">
-            <p>"The kitchen drawings were so precise our cabinet shop asked who did them. The finished room is the reason people stop by."</p>
-            <footer><strong>Homeowner</strong><span>Broadmoor, Colorado Springs</span></footer>
+            <span class="quote__mark">“</span>
+            <div class="quote__body">
+              <span class="quote__stars">★★★★★</span>
+              <p>The kitchen drawings were so precise our cabinet shop asked who did them. The finished room is the reason people stop by.</p>
+            </div>
+            <footer><span class="quote__avatar">HO</span><div><strong>Homeowner</strong><span>Broadmoor · Colorado Springs</span></div></footer>
           </blockquote>
           <blockquote class="quote quote--dark">
-            <p>"They set up our entire relocation house in Parker before we landed. Beds made, art hung, pantry stocked. Unreal."</p>
-            <footer><strong>Relocating Family</strong><span>Parker</span></footer>
+            <span class="quote__mark">“</span>
+            <div class="quote__body">
+              <span class="quote__stars">★★★★★</span>
+              <p>They set up our entire relocation house in Parker before we landed. Beds made, art hung, pantry stocked. Unreal.</p>
+            </div>
+            <footer><span class="quote__avatar">RF</span><div><strong>Relocating Family</strong><span>Parker</span></div></footer>
           </blockquote>
           <blockquote class="quote">
-            <p>"The basement finally feels like the best floor of the house. The lighting plan alone was worth the engagement."</p>
-            <footer><strong>Homeowner</strong><span>Black Forest</span></footer>
+            <span class="quote__mark">“</span>
+            <div class="quote__body">
+              <span class="quote__stars">★★★★★</span>
+              <p>The basement finally feels like the best floor of the house. The lighting plan alone was worth the engagement.</p>
+            </div>
+            <footer><span class="quote__avatar">HO</span><div><strong>Homeowner</strong><span>Black Forest</span></div></footer>
           </blockquote>
           <blockquote class="quote quote--accent">
-            <p>"Fast, calm, and ridiculously well organized. Every install day ran to the minute."</p>
-            <footer><strong>Property Manager</strong><span>Falcon</span></footer>
+            <span class="quote__mark">“</span>
+            <div class="quote__body">
+              <span class="quote__stars">★★★★★</span>
+              <p>Fast, calm, and ridiculously well organized. Every install day ran to the minute.</p>
+            </div>
+            <footer><span class="quote__avatar">PM</span><div><strong>Property Manager</strong><span>Falcon</span></div></footer>
           </blockquote>
         </div>
+      </div>
+      <div class="container testi__foot">
+        <div class="testi__progress" id="testi-progress"><span></span></div>
+        <span class="testi__hint">Drag, swipe or use the arrows</span>
       </div>
     </section>
 

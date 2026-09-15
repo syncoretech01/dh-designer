@@ -73,7 +73,6 @@ export function heroIntro(hero3d) {
         trigger: '#hero', start: 'top top', end: () => '+=' + Math.round(innerHeight * 1.1), pin: true, scrub: 0.5, anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate: (self) => hero3d?.setScroll(self.progress),
-        onToggle: (self) => hero3d?.setRunning(self.isActive),
       },
     });
     pinTl
@@ -85,9 +84,15 @@ export function heroIntro(hero3d) {
     ScrollTrigger.create({
       trigger: '#hero', start: 'top top', end: 'bottom 20%', scrub: 0.5,
       onUpdate: (self) => hero3d?.setScroll(self.progress),
-      onToggle: (self) => hero3d?.setRunning(self.isActive),
     });
   });
+  // Keep the scene rendering (idle drift, pointer parallax) while the pin is active AND while the
+  // released hero scrolls off. The marquee sits directly under the hero, so its top reaching the
+  // viewport top means the hero has fully left — this sidesteps the pin-spacing offset problem.
+  const running = { pin: true, tail: false };
+  const sync = () => hero3d?.setRunning(running.pin || running.tail);
+  ScrollTrigger.create({ trigger: '#hero', start: 'top bottom', end: () => '+=' + Math.round(innerHeight * 2.1), onToggle: (self) => { running.pin = self.isActive; sync(); } });
+  ScrollTrigger.create({ trigger: '.marquee', start: 'top bottom', end: 'top top', onToggle: (self) => { running.tail = self.isActive; sync(); } });
   return tl;
 }
 
@@ -103,7 +108,7 @@ function reveals() {
   });
 
   gsap.from('.svc', { y: 70, opacity: 0, duration: 1.3, ease: 'expo.out', stagger: 0.08, scrollTrigger: { trigger: '.services__grid', start: 'top 82%', once: true } });
-  gsap.from('.quote', { y: 60, opacity: 0, duration: 1.2, ease: 'expo.out', stagger: 0.07, scrollTrigger: { trigger: '.testi__wrap', start: 'top 85%', once: true } });
+  gsap.from('.quote', { y: 60, opacity: 0, duration: 1.2, ease: 'expo.out', stagger: 0.07, clearProps: 'all', scrollTrigger: { trigger: '.testi__wrap', start: 'top 85%', once: true } });
   gsap.from('.area', { x: -40, opacity: 0, duration: 1.2, ease: 'expo.out', stagger: 0.06, scrollTrigger: { trigger: '.areas__list', start: 'top 85%', once: true } });
   gsap.from('.contact .form', { y: 60, opacity: 0, duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: '.contact .form', start: 'top 85%', once: true } });
 }
@@ -300,12 +305,66 @@ function areasHover() {
    ═══════════════════════════════════════════ */
 function testimonials() {
   const track = document.getElementById('testi-track');
-  const wrap = track.parentElement;
-  const bounds = () => ({ minX: -(track.scrollWidth - wrap.clientWidth + parseFloat(getComputedStyle(wrap).paddingLeft) * 2), maxX: 0 });
+  const wrap = document.getElementById('testi-wrap');
+  const cards = gsap.utils.toArray('.quote');
+  const cur = document.getElementById('testi-cur');
+  const bar = document.querySelector('#testi-progress span');
+  const n = cards.length;
+  document.getElementById('testi-total').textContent = String(n).padStart(2, '0');
+
+  let index = 0;
+  let offsets = [];
+  let autoTimer = null;
+
+  // Snap points: each card's left edge aligned to the wrap padding, clamped so the last card never over-scrolls
+  const measure = () => {
+    const pad = parseFloat(getComputedStyle(wrap).paddingLeft);
+    const maxX = Math.max(0, track.scrollWidth - wrap.clientWidth + pad * 2);
+    offsets = cards.map((c) => Math.min(c.offsetLeft, maxX));
+    return { minX: -maxX, maxX: 0 };
+  };
+
+  const setActive = (i) => {
+    index = i;
+    cards.forEach((c, k) => c.classList.toggle('is-active', k === i));
+    cur.textContent = String(i + 1).padStart(2, '0');
+    bar.style.transform = `scaleX(${(i + 1) / n})`;
+  };
+  const nearest = (x) => {
+    let best = 0, d = Infinity;
+    offsets.forEach((o, i) => { const dd = Math.abs(-o - x); if (dd < d) { d = dd; best = i; } });
+    return best;
+  };
+
   const [drag] = Draggable.create(track, {
-    type: 'x', bounds: bounds(), inertia: true, edgeResistance: 0.85, dragResistance: 0.1, cursor: 'grab', activeCursor: 'grabbing',
+    type: 'x', bounds: measure(), inertia: true, edgeResistance: 0.8, dragResistance: 0.08,
+    cursor: 'grab', activeCursor: 'grabbing',
+    snap: { x: (x) => -offsets[nearest(x)] },
+    onPress: stopAuto,
+    onDrag() { setActive(nearest(this.x)); },
+    onThrowUpdate() { setActive(nearest(this.x)); },
+    onThrowComplete: startAuto,
   });
-  window.addEventListener('resize', () => drag.applyBounds(bounds()));
+
+  const goTo = (i, dur = 1.1) => {
+    const target = gsap.utils.wrap(0, n, i);
+    setActive(target);
+    gsap.to(track, { x: -offsets[target], duration: dur, ease: 'expo.out', overwrite: true, onUpdate: () => drag.update() });
+  };
+  function startAuto() { stopAuto(); autoTimer = setInterval(() => goTo(index + 1, 1.4), 5200); }
+  function stopAuto() { if (autoTimer) clearInterval(autoTimer); autoTimer = null; }
+
+  document.getElementById('testi-next').addEventListener('click', () => { goTo(index + 1); startAuto(); });
+  document.getElementById('testi-prev').addEventListener('click', () => { goTo(index - 1); startAuto(); });
+  cards.forEach((c, i) => c.addEventListener('click', () => { if (!drag.isDragging && i !== index) { goTo(i); startAuto(); } }));
+  wrap.addEventListener('mouseenter', stopAuto);
+  wrap.addEventListener('mouseleave', startAuto);
+
+  window.addEventListener('resize', () => { drag.applyBounds(measure()); goTo(index, 0.4); });
+  setActive(0);
+
+  const io = new IntersectionObserver(([e]) => (e.isIntersecting ? startAuto() : stopAuto()), { threshold: 0.3 });
+  io.observe(wrap);
 }
 
 /* ═══════════════════════════════════════════

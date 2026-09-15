@@ -124,7 +124,7 @@ export function initHero3D(canvas) {
     const explodeDist = isSatellite ? rand(2.2, 3.6) : rand(2.8, 5);
     const explode = basePos.clone().add(dir.multiplyScalar(explodeDist)).add(new THREE.Vector3(rand(-1.2, 1.2), rand(-0.8, 1.6), rand(-1.5, 1.5)));
     const rot = new THREE.Vector3(rand(-1.4, 1.4), rand(-1.6, 1.6), rand(-0.8, 0.8));
-    pieces.push({ mesh, base: basePos.clone(), explode, rot, phase: Math.random() * Math.PI * 2, bob: isSatellite ? rand(0.12, 0.28) : rand(0.02, 0.06) });
+    pieces.push({ mesh, base: basePos.clone(), explode, rot, spin: rand(-1, 1), phase: Math.random() * Math.PI * 2, bob: isSatellite ? rand(0.12, 0.28) : rand(0.02, 0.06) });
   };
 
   VOLUMES.forEach(([size, pos, color]) => {
@@ -155,7 +155,7 @@ export function initHero3D(canvas) {
   scene.add(particles);
 
   // State
-  const state = { intro: 1, introRot: -1.9, scroll: 0, mouseX: 0, mouseY: 0, tx: 0, ty: 0, running: true };
+  const state = { intro: 1, introRot: -1.9, scroll: 0, flush: false, mouseX: 0, mouseY: 0, tx: 0, ty: 0, running: true };
 
   const resize = () => {
     const w = canvas.clientWidth || innerWidth;
@@ -185,16 +185,21 @@ export function initHero3D(canvas) {
   const ease = (t) => 1 - Math.pow(1 - t, 2);
 
   const render = () => {
-    if (!state.running && state.intro === 0) return;
+    if (!state.running && state.intro === 0 && !state.flush) return;
+    state.flush = false;
     const t = clock.getElapsedTime();
     // Fully exploded exactly when the pinned hero scroll completes
     const f = Math.min(1, state.intro + ease(state.scroll));
 
     pieces.forEach((p) => {
       tmp.copy(p.base).lerp(p.explode, f);
-      tmp.y += Math.sin(t * 0.9 + p.phase) * p.bob;
+      tmp.y += Math.sin(t * 0.9 + p.phase) * (p.bob + f * 0.22);
+      tmp.x += Math.cos(t * 0.6 + p.phase) * f * 0.14;
       p.mesh.position.copy(tmp);
-      p.mesh.rotation.set(p.rot.x * f, p.rot.y * f + (p.bob > 0.1 ? t * 0.25 : 0), p.rot.z * f);
+      p.mesh.rotation.set(p.rot.x * f + t * 0.08 * p.spin * f, p.rot.y * f + (p.bob > 0.1 ? t * 0.25 : 0) + t * 0.12 * p.spin * f, p.rot.z * f);
+      // Pieces shrink as they disperse so the end state reads as drifting away, not looming
+      const sc = 1 - 0.32 * f;
+      p.mesh.scale.setScalar(sc);
     });
 
     state.tx += ((state.mouseX * 0.35) - state.tx) * 0.04;
@@ -218,6 +223,6 @@ export function initHero3D(canvas) {
       gsap.to(state, { introRot: 0, duration: 3, ease: 'expo.out' });
     },
     setScroll(p) { state.scroll = p; },
-    setRunning(v) { state.running = v; },
+    setRunning(v) { state.running = v; if (!v) state.flush = true; }, // always paint the final state before pausing
   };
 }
