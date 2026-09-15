@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>DH Designer — Interior Design, Home Staging & Property Setup · Colorado Springs</title>
+  <meta name="description" content="DH Designer crafts model homes, kitchens, bathrooms, finished basements, staging and full property setups across Colorado Springs, Monument, Castle Rock, Parker and El Paso County." />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/css/base.css" />
+  <link rel="stylesheet" href="/src/css/components.css" />
+  <link rel="stylesheet" href="/src/css/sections.css" />
+</head>
+<body>
+
+  <!-- ═══════════════ PRELOADER ═══════════════ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__panel preloader__panel--l"></div>
+    <div class="preloader__panel preloader__panel--r"></div>
+    <div class="preloader__inner">
+      <div class="preloader__mark">
+        <svg viewBox="0 0 120 120" class="preloader__logo" fill="none">
+          <path class="pl-path" d="M20 20h30c22 0 40 18 40 40s-18 40-40 40H20V20z" stroke="currentColor" stroke-width="1.5"/>
+          <path class="pl-path" d="M66 20v80M100 20v80M66 60h34" stroke="currentColor" stroke-width="1.5"/>
+          <circle class="pl-path" cx="60" cy="60" r="56" stroke="currentColor" stroke-width="0.75"/>
+        </svg>
+      </div>
+      <div class="preloader__words">
+        <span class="preloader__word">Spaces</span>
+        <span class="preloader__word">Composed</span>
+        <span class="preloader__word">With Intention</span>
+      </div>
+      <div class="preloader__meta">
+        <span class="preloader__count"><span id="pl-count">00</span><sup>%</sup></span>
+        <span class="preloader__label">DH Designer · Colorado Springs</span>
+      </div>
+      <div class="preloader__bar"><span id="pl-bar"></span></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ CURSOR ═══════════════ -->
+  <div class="cursor" id="cursor">
+    <div class="cursor__dot"></div>
+    <div class="cursor__ring"><span class="cursor__label"></span></div>
+  </div>
+
+  <!-- ═══════════════ SCROLL PROGRESS ═══════════════ -->
+  <div class="progress" id="progress"><span></span></div>
+
+  <!-- ═══════════════ HEADER ═══════════════ -->
+  <header class="header" id="header">
+    <a href="#top" class="header__logo" data-magnetic aria-label="DH Designer home">
+      <span class="logo__mark">DH</span>
+      <span class="logo__word">Designer</span>
+    </a>
+    <nav class="header__nav" aria-label="Primary">
+      <a href="#studio" class="nav__link" data-magnetic><span>Studio</span></a>
+      <a href="#services" class="nav__link" data-magnetic><span>Services</span></a>
+      <a href="#work" class="nav__link" data-magnetic><span>Work</span></a>
+      <a href="#areas" class="nav__link" data-magnetic><span>Areas</span></a>
+      <a href="#contact" class="nav__link" data-magnetic><span>Contact</span></a>
+    </nav>
+    <div class="header__right">
+      <a href="tel:7202444110" class="header__phone" data-magnetic>720-244-4110</a>
+      <button class="burger" id="burger" data-magnetic aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════════ FULLSCREEN MENU ═══════════════ -->
+  <div class="menu" id="menu" aria-hidden="true">
+    <div class="menu__bg"></div>
+    <div class="menu__inner">
+      <div class="menu__col menu__col--links">
+        <span class="menu__eyebrow">Navigate</span>
+        <ul class="menu__list">
+          <li><a href="#studio" class="menu__link" data-index="01"><span>Studio</span></a></li>
+          <li><a href="#services" class="menu__link" data-index="02"><span>Services</span></a></li>
+          <li><a href="#process" class="menu__link" data-index="03"><span>Process</span></a></li>
+          <li><a href="#work" class="menu__link" data-index="04"><span>Work</span></a></li>
+          <li><a href="#areas" class="menu__link" data-index="05"><span>Areas</span></a></li>
+          <li><a href="#contact" class="menu__link" data-index="06"><span>Contact</span></a></li>
+        </ul>
+      </div>
+      <div class="menu__col menu__col--meta">
+        <div class="menu__block">
+          <span class="menu__eyebrow">Studio</span>
+          <p>Colorado Springs, CO<br/>Serving El Paso County &amp; the Front Range</p>
+        </div>
+        <div class="menu__block">
+          <span class="menu__eyebrow">Call</span>
+          <a href="tel:7202444110" class="menu__phone">720-244-4110</a>
+        </div>
+        <div class="menu__block">
+          <span class="menu__eyebrow">Hours</span>
+          <p>Mon — Sat<br/>8:00 — 18:00</p>
+        </div>
+        <div class="menu__image">
+          <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=80" alt="Styled living room" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ MAIN ═══════════════ -->
+  <main id="top">
+
+    <!-- ─────────── HERO ─────────── -->
+    <section class="hero" id="hero">
+      <canvas class="hero__canvas" id="hero-canvas"></canvas>
+      <div class="hero__grain"></div>
+      <div class="hero__inner">
+        <div class="hero__top">
+          <span class="hero__eyebrow"><i></i>Interior Design Studio · Colorado Springs</span>
+          <span class="hero__coords">38.8339° N, 104.8214° W</span>
+        </div>
+        <h1 class="hero__title">
+          <span class="hero__line"><span class="split" data-split="chars">Spaces that</span></span>
+          <span class="hero__line hero__line--italic"><span class="split" data-split="chars">sell the story</span></span>
+          <span class="hero__line"><span class="split" data-split="chars">of home.</span></span>
+        </h1>
+        <div class="hero__bottom">
+          <p class="hero__lede" data-reveal>
+            Model homes, kitchens, baths, finished basements and resale staging —
+            designed with a builder's rigor and a stylist's eye, from Monument to Castle Rock.
+          </p>
+          <ul class="hero__services">
+            <li>Model Design</li>
+            <li>Kitchen &amp; Bath</li>
+            <li>Basements</li>
+            <li>Staging</li>
+            <li>Property Setup</li>
+          </ul>
+          <div class="hero__actions">
+            <a href="#contact" class="btn btn--primary" data-magnetic data-cursor="hide">
+              <span class="btn__bg"></span>
+              <span class="btn__text">Book a Free Model Design</span>
+              <span class="btn__icon">→</span>
+            </a>
+            <a href="#work" class="btn btn--ghost" data-magnetic data-cursor="hide">
+              <span class="btn__text">View the Work</span>
+            </a>
+          </div>
+        </div>
+        <div class="hero__scroll">
+          <span class="hero__scroll-line"></span>
+          <span>Scroll</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── MARQUEE ─────────── -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track" id="marquee-1">
+        <span>Colorado Springs</span><i>✦</i><span>Monument</span><i>✦</i><span>Castle Rock</span><i>✦</i><span>Black Forest</span><i>✦</i><span>Falcon</span><i>✦</i><span>Parker</span><i>✦</i><span>El Paso County</span><i>✦</i>
+        <span>Colorado Springs</span><i>✦</i><span>Monument</span><i>✦</i><span>Castle Rock</span><i>✦</i><span>Black Forest</span><i>✦</i><span>Falcon</span><i>✦</i><span>Parker</span><i>✦</i><span>El Paso County</span><i>✦</i>
+      </div>
+    </div>
+
+    <!-- ─────────── STUDIO / IMMERSIVE ZOOM ─────────── -->
+    <section class="studio" id="studio">
+      <div class="studio__pin">
+        <div class="studio__intro" id="zoom-intro">
+          <span class="eyebrow">01 — Who we are</span>
+          <h2 class="studio__h">
+            A Colorado Springs studio for builders, brokers and homeowners who want the room to <em>do the talking.</em>
+          </h2>
+        </div>
+        <div class="studio__frame" id="zoom-frame">
+          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=80" alt="Composed living room with warm textures" class="studio__img" id="zoom-img" />
+          <div class="studio__overlay"></div>
+        </div>
+        <div class="studio__caption" id="zoom-caption">
+          <span class="eyebrow eyebrow--light">The Studio</span>
+          <h2 class="studio__title">
+            <span>We design homes</span>
+            <span><em>buyers remember.</em></span>
+          </h2>
+        </div>
+      </div>
+      <div class="studio__after container">
+        <div class="studio__grid">
+          <div class="studio__col" data-reveal>
+            <p class="lede">DH Designer is a full-service interior design and staging practice based in Colorado Springs. We partner with production builders on model homes, with agents on resale staging, and with families on the kitchens, baths and basements they've been dreaming about.</p>
+          </div>
+          <div class="studio__col" data-reveal>
+            <p>Every engagement starts with a free model design conversation. We map your goals, walk your floor plan, and return with a concept you can see — palettes, plans and a clear scope. From there we handle sourcing, install and the final styling pass.</p>
+            <a href="#services" class="link-arrow" data-magnetic><span>Explore services</span><i>→</i></a>
+          </div>
+          <ul class="studio__facts">
+            <li data-reveal><strong data-counter="140">0</strong><span>Homes styled &amp; staged</span></li>
+            <li data-reveal><strong data-counter="38">0</strong><span>Model homes for builders</span></li>
+            <li data-reveal><strong data-counter="11">0</strong><span>Days faster to contract, avg.</span></li>
+            <li data-reveal><strong data-counter="7">0</strong><span>Communities served</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── SERVICES / EXPLODING OBJECTS ─────────── -->
+    <section class="services" id="services">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow" data-reveal>02 — Services</span>
+          <h2 class="section-title"><span class="split" data-split="words">Five disciplines. One standard of finish.</span></h2>
+          <p class="section-sub" data-reveal>Hover a service to open it up. Each one is a complete engagement — concept through install.</p>
+        </header>
+
+        <div class="services__grid">
+
+          <article class="svc" data-tilt data-cursor="explore">
+            <div class="svc__object">
+              <div class="svc__layer svc__layer--1"></div>
+              <div class="svc__layer svc__layer--2"></div>
+              <div class="svc__layer svc__layer--3"></div>
+              <div class="svc__layer svc__layer--4"><span>01</span></div>
+            </div>
+            <div class="svc__body">
+              <span class="svc__num">01</span>
+              <h3 class="svc__title">Free Model Design</h3>
+              <p class="svc__desc">A complimentary concept for your model home or listing: a mood direction, a plan overlay and a scope you can act on the same week.</p>
+              <ul class="svc__tags"><li>Concept boards</li><li>Plan overlay</li><li>Scope &amp; budget</li></ul>
+            </div>
+          </article>
+
+          <article class="svc" data-tilt data-cursor="explore">
+            <div class="svc__object">
+              <div class="svc__layer svc__layer--1"></div>
+              <div class="svc__layer svc__layer--2"></div>
+              <div class="svc__layer svc__layer--3"></div>
+              <div class="svc__layer svc__layer--4"><span>02</span></div>
+            </div>
+            <div class="svc__body">
+              <span class="svc__num">02</span>
+              <h3 class="svc__title">Kitchen &amp; Bathroom Design</h3>
+              <p class="svc__desc">Cabinetry, stone, tile and fixtures composed as one material story — drawn to the millimeter and coordinated with your trades.</p>
+              <ul class="svc__tags"><li>Layouts</li><li>Material palettes</li><li>Fixture specs</li></ul>
+            </div>
+          </article>
+
+          <article class="svc" data-tilt data-cursor="explore">
+            <div class="svc__object">
+              <div class="svc__layer svc__layer--1"></div>
+              <div class="svc__layer svc__layer--2"></div>
+              <div class="svc__layer svc__layer--3"></div>
+              <div class="svc__layer svc__layer--4"><span>03</span></div>
+            </div>
+            <div class="svc__body">
+              <span class="svc__num">03</span>
+              <h3 class="svc__title">Finished Basement Design</h3>
+              <p class="svc__desc">Lower levels that feel like the best floor of the house: lighting plans, wet bars, media walls, guest suites and gyms.</p>
+              <ul class="svc__tags"><li>Lighting plan</li><li>Zoning</li><li>Built-ins</li></ul>
+            </div>
+          </article>
+
+          <article class="svc" data-tilt data-cursor="explore">
+            <div class="svc__object">
+              <div class="svc__layer svc__layer--1"></div>
+              <div class="svc__layer svc__layer--2"></div>
+              <div class="svc__layer svc__layer--3"></div>
+              <div class="svc__layer svc__layer--4"><span>04</span></div>
+            </div>
+            <div class="svc__body">
+              <span class="svc__num">04</span>
+              <h3 class="svc__title">Home Staging for Resale</h3>
+              <p class="svc__desc">Furniture, art and styling curated to the buyer profile of your neighborhood — photographed, listed and under contract faster.</p>
+              <ul class="svc__tags"><li>Vacant &amp; occupied</li><li>Photo-ready</li><li>Inventory</li></ul>
+            </div>
+          </article>
+
+          <article class="svc" data-tilt data-cursor="explore">
+            <div class="svc__object">
+              <div class="svc__layer svc__layer--1"></div>
+              <div class="svc__layer svc__layer--2"></div>
+              <div class="svc__layer svc__layer--3"></div>
+              <div class="svc__layer svc__layer--4"><span>05</span></div>
+            </div>
+            <div class="svc__body">
+              <span class="svc__num">05</span>
+              <h3 class="svc__title">Property Setup</h3>
+              <p class="svc__desc">Turn-key furnishing for new builds, relocations and rentals — everything sourced, delivered, installed and styled before you walk in.</p>
+              <ul class="svc__tags"><li>Turn-key</li><li>Rentals &amp; STR</li><li>Relocation</li></ul>
+            </div>
+          </article>
+
+          <a href="#contact" class="svc svc--cta" data-tilt data-magnetic data-cursor="hide">
+            <div class="svc__cta-inner">
+              <span class="eyebrow eyebrow--light">Start here</span>
+              <h3>Book your free model design.</h3>
+              <span class="svc__cta-arrow">→</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── PROCESS / HORIZONTAL PARALLAX ─────────── -->
+    <section class="process" id="process">
+      <div class="process__pin" id="process-pin">
+        <div class="process__head container">
+          <span class="eyebrow" data-reveal>03 — Process</span>
+          <h2 class="section-title"><span class="split" data-split="words">From the first walk-through to the final pillow.</span></h2>
+        </div>
+        <div class="process__track" id="process-track">
+          <div class="process__panel">
+            <span class="process__num" data-speed="0.6">01</span>
+            <figure class="process__fig" data-speed="1.15">
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Walk-through of a new build" loading="lazy" />
+            </figure>
+            <div class="process__text" data-speed="0.9">
+              <h3>Discover</h3>
+              <p>We walk the plan or the property with you, learn the buyer, the budget and the deadline, and photograph every corner.</p>
+            </div>
+          </div>
+          <div class="process__panel">
+            <span class="process__num" data-speed="0.6">02</span>
+            <figure class="process__fig" data-speed="1.15">
+              <img src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=1200&q=80" alt="Dining room concept" loading="lazy" />
+            </figure>
+            <div class="process__text" data-speed="0.9">
+              <h3>Concept</h3>
+              <p>Palettes, plans and elevations arrive as one clear direction — a free model design you can approve, adjust or expand.</p>
+            </div>
+          </div>
+          <div class="process__panel">
+            <span class="process__num" data-speed="0.6">03</span>
+            <figure class="process__fig" data-speed="1.15">
+              <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1200&q=80" alt="Kitchen design in progress" loading="lazy" />
+            </figure>
+            <div class="process__text" data-speed="0.9">
+              <h3>Source &amp; Build</h3>
+              <p>We specify, order and coordinate with your trades. Stone, tile, cabinetry, lighting and furniture — tracked to the day.</p>
+            </div>
+          </div>
+          <div class="process__panel">
+            <span class="process__num" data-speed="0.6">04</span>
+            <figure class="process__fig" data-speed="1.15">
+              <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&w=1200&q=80" alt="Styled bedroom" loading="lazy" />
+            </figure>
+            <div class="process__text" data-speed="0.9">
+              <h3>Install &amp; Style</h3>
+              <p>One install day. Every layer placed, every lamp lit, every bed dressed — photo-ready before the first showing.</p>
+            </div>
+          </div>
+          <div class="process__panel process__panel--end">
+            <div class="process__end">
+              <h3>Ready when<br/><em>you are.</em></h3>
+              <a href="#contact" class="btn btn--dark" data-magnetic data-cursor="hide"><span class="btn__bg"></span><span class="btn__text">Start a project</span><span class="btn__icon">→</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="process__progress"><span id="process-progress"></span></div>
+      </div>
+    </section>
+
+    <!-- ─────────── WORK / 3D SLIDER ─────────── -->
+    <section class="work" id="work">
+      <div class="container">
+        <header class="section-head section-head--row">
+          <div>
+            <span class="eyebrow eyebrow--light" data-reveal>04 — Selected Work</span>
+            <h2 class="section-title"><span class="split" data-split="words">Rooms with a point of view.</span></h2>
+          </div>
+          <div class="work__controls">
+            <button class="ctrl" id="slider-prev" data-magnetic aria-label="Previous">←</button>
+            <span class="work__count"><span id="slide-cur">01</span> / <span id="slide-total">06</span></span>
+            <button class="ctrl" id="slider-next" data-magnetic aria-label="Next">→</button>
+          </div>
+        </header>
+      </div>
+      <div class="slider3d" id="slider3d" data-cursor="drag">
+        <div class="slider3d__stage" id="slider-stage">
+          <article class="slide" data-title="Monument Model Home" data-cat="Model Design · Monument">
+            <div class="slide__media"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80" alt="Monument model home living room" loading="lazy" /></div>
+          </article>
+          <article class="slide" data-title="Broadmoor Kitchen" data-cat="Kitchen · Colorado Springs">
+            <div class="slide__media"><img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1400&q=80" alt="Broadmoor kitchen remodel" loading="lazy" /></div>
+          </article>
+          <article class="slide" data-title="Black Forest Retreat" data-cat="Basement · Black Forest">
+            <div class="slide__media"><img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=80" alt="Black Forest finished basement" loading="lazy" /></div>
+          </article>
+          <article class="slide" data-title="Castle Rock Primary Bath" data-cat="Bathroom · Castle Rock">
+            <div class="slide__media"><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1400&q=80" alt="Castle Rock bathroom" loading="lazy" /></div>
+          </article>
+          <article class="slide" data-title="Falcon Resale Staging" data-cat="Staging · Falcon">
+            <div class="slide__media"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1400&q=80" alt="Falcon staged living room" loading="lazy" /></div>
+          </article>
+          <article class="slide" data-title="Parker Turn-Key Setup" data-cat="Property Setup · Parker">
+            <div class="slide__media"><img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&w=1400&q=80" alt="Parker turn-key bedroom" loading="lazy" /></div>
+          </article>
+        </div>
+        <div class="slider3d__caption">
+          <h3 id="slide-title">Monument Model Home</h3>
+          <span id="slide-cat">Model Design · Monument</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── STORY / PARALLAX STORYTELLING ─────────── -->
+    <section class="story" id="story">
+      <div class="story__pin">
+        <div class="story__layers">
+          <div class="story__layer story__layer--bg" data-depth="0.15">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2200&q=80" alt="" loading="lazy" />
+          </div>
+          <div class="story__layer story__layer--mid" data-depth="0.4">
+            <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1200&q=80" alt="" loading="lazy" />
+          </div>
+          <div class="story__layer story__layer--fg" data-depth="0.7">
+            <img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=1000&q=80" alt="" loading="lazy" />
+          </div>
+          <div class="story__veil"></div>
+        </div>
+        <div class="story__chapters">
+          <article class="chapter" data-chapter="1">
+            <span class="chapter__num">Chapter I</span>
+            <h2>An empty model<br/>in <em>Monument.</em></h2>
+            <p>Four thousand square feet of drywall and daylight. The builder needed buyers to feel a life inside it in under three seconds.</p>
+          </article>
+          <article class="chapter" data-chapter="2">
+            <span class="chapter__num">Chapter II</span>
+            <h2>A palette drawn<br/>from <em>the Front Range.</em></h2>
+            <p>Sandstone, aspen, evening sky. Every material chosen to echo the view from the great-room windows.</p>
+          </article>
+          <article class="chapter" data-chapter="3">
+            <span class="chapter__num">Chapter III</span>
+            <h2>Sold on the<br/><em>first weekend.</em></h2>
+            <p>Three lots reserved from the model alone. The staging stayed for eleven months as the community's showpiece.</p>
+          </article>
+        </div>
+        <div class="story__dots"><span class="is-active"></span><span></span><span></span></div>
+      </div>
+    </section>
+
+    <!-- ─────────── WHY / LAYER TRANSFORMATION (STACK) ─────────── -->
+    <section class="why" id="why">
+      <div class="container why__inner">
+        <div class="why__sticky">
+          <span class="eyebrow" data-reveal>05 — Why DH</span>
+          <h2 class="section-title"><span class="split" data-split="words">Built for the way homes actually sell.</span></h2>
+          <p class="section-sub" data-reveal>Scroll to layer the reasons builders, brokers and homeowners keep coming back.</p>
+        </div>
+        <div class="why__stack" id="why-stack">
+          <div class="card-l card-l--1">
+            <span class="card-l__num">01</span>
+            <h3>Builder-grade rigor</h3>
+            <p>We draw to dimension, spec to SKU, and schedule to the day. Your trades get drawings they can build from — not mood boards they have to interpret.</p>
+          </div>
+          <div class="card-l card-l--2">
+            <span class="card-l__num">02</span>
+            <h3>Buyer-first styling</h3>
+            <p>Every palette is tuned to who is actually shopping your neighborhood. Aspirational, never alienating — homes that feel earned, not staged.</p>
+          </div>
+          <div class="card-l card-l--3">
+            <span class="card-l__num">03</span>
+            <h3>Local, and fast</h3>
+            <p>Based in Colorado Springs with inventory on hand. Most staging installs happen within seven days of the call.</p>
+          </div>
+          <div class="card-l card-l--4">
+            <span class="card-l__num">04</span>
+            <h3>One accountable partner</h3>
+            <p>Design, sourcing, delivery, install, styling and de-stage — one team, one number: 720-244-4110.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── GALLERY / VERTICAL COLUMNS SLIDER ─────────── -->
+    <section class="gallery" id="gallery">
+      <div class="gallery__head container">
+        <span class="eyebrow" data-reveal>06 — Texture</span>
+        <h2 class="section-title"><span class="split" data-split="words">Materials, light and the details in between.</span></h2>
+      </div>
+      <div class="gallery__cols" id="gallery-cols">
+        <div class="gallery__col" data-dir="-1">
+          <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1600573472592-401b489a3cdc?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1617325247661-675ab4b64ae2?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" />
+        </div>
+        <div class="gallery__col" data-dir="1">
+          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" />
+        </div>
+        <div class="gallery__col" data-dir="-1">
+          <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" />
+        </div>
+        <div class="gallery__col" data-dir="1">
+          <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── AREAS / HOVER REVEAL ─────────── -->
+    <section class="areas" id="areas">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow" data-reveal>07 — Service Areas</span>
+          <h2 class="section-title"><span class="split" data-split="words">El Paso County and the communities around it.</span></h2>
+        </header>
+        <ul class="areas__list" id="areas-list">
+          <li class="area" data-img="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" data-cursor="hide">
+            <span class="area__name">Colorado Springs</span><span class="area__meta">Home base · Broadmoor, Briargate, Old North End</span>
+          </li>
+          <li class="area" data-img="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" data-cursor="hide">
+            <span class="area__name">Monument</span><span class="area__meta">Model homes · New communities</span>
+          </li>
+          <li class="area" data-img="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=800&q=80" data-cursor="hide">
+            <span class="area__name">Castle Rock</span><span class="area__meta">Resale staging · Kitchens &amp; baths</span>
+          </li>
+          <li class="area" data-img="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80" data-cursor="hide">
+            <span class="area__name">Black Forest</span><span class="area__meta">Acreage homes · Finished basements</span>
+          </li>
+          <li class="area" data-img="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80" data-cursor="hide">
+            <span class="area__name">Falcon</span><span class="area__meta">Staging · Property setup</span>
+          </li>
+          <li class="area" data-img="https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&w=800&q=80" data-cursor="hide">
+            <span class="area__name">Parker</span><span class="area__meta">Turn-key setups · Relocations</span>
+          </li>
+          <li class="area" data-img="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80" data-cursor="hide">
+            <span class="area__name">El Paso County</span><span class="area__meta">And surrounding areas across the Front Range</span>
+          </li>
+        </ul>
+        <div class="areas__float" id="areas-float"><img src="" alt="" /></div>
+      </div>
+    </section>
+
+    <!-- ─────────── TESTIMONIALS / COLUMNS SLIDER ─────────── -->
+    <section class="testi" id="testimonials">
+      <div class="container">
+        <header class="section-head section-head--row">
+          <div>
+            <span class="eyebrow" data-reveal>08 — Kind Words</span>
+            <h2 class="section-title"><span class="split" data-split="words">What clients say after the install.</span></h2>
+          </div>
+          <span class="testi__hint" data-reveal>Drag to explore →</span>
+        </header>
+      </div>
+      <div class="testi__wrap" data-cursor="drag">
+        <div class="testi__track" id="testi-track">
+          <blockquote class="quote">
+            <p>"Our model in Monument went from drywall to sold-out community showpiece in six weeks. DH understood the buyer before we did."</p>
+            <footer><strong>Regional Sales Manager</strong><span>Production Builder, Monument</span></footer>
+          </blockquote>
+          <blockquote class="quote quote--accent">
+            <p>"Staged on Tuesday, photographed Wednesday, under contract Sunday — $22k over ask. I won't list a vacant home without them."</p>
+            <footer><strong>Listing Broker</strong><span>Castle Rock</span></footer>
+          </blockquote>
+          <blockquote class="quote">
+            <p>"The kitchen drawings were so precise our cabinet shop asked who did them. The finished room is the reason people stop by."</p>
+            <footer><strong>Homeowner</strong><span>Broadmoor, Colorado Springs</span></footer>
+          </blockquote>
+          <blockquote class="quote quote--dark">
+            <p>"They set up our entire relocation house in Parker before we landed. Beds made, art hung, pantry stocked. Unreal."</p>
+            <footer><strong>Relocating Family</strong><span>Parker</span></footer>
+          </blockquote>
+          <blockquote class="quote">
+            <p>"The basement finally feels like the best floor of the house. The lighting plan alone was worth the engagement."</p>
+            <footer><strong>Homeowner</strong><span>Black Forest</span></footer>
+          </blockquote>
+          <blockquote class="quote quote--accent">
+            <p>"Fast, calm, and ridiculously well organized. Every install day ran to the minute."</p>
+            <footer><strong>Property Manager</strong><span>Falcon</span></footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── CONTACT ─────────── -->
+    <section class="contact" id="contact">
+      <div class="contact__bg" data-parallax="0.2"></div>
+      <div class="container contact__inner">
+        <div class="contact__left">
+          <span class="eyebrow eyebrow--light" data-reveal>09 — Contact</span>
+          <h2 class="contact__title">
+            <span class="split" data-split="chars">Let's design</span>
+            <span class="split" data-split="chars"><em>the next one.</em></span>
+          </h2>
+          <p class="contact__lede" data-reveal>Start with a free model design. Tell us about the property and we'll come back within one business day with a concept and a plan.</p>
+          <ul class="contact__details">
+            <li data-reveal><span>Call</span><a href="tel:7202444110" data-magnetic>720-244-4110</a></li>
+            <li data-reveal><span>Studio</span><p>Colorado Springs, CO</p></li>
+            <li data-reveal><span>Serving</span><p>El Paso County · Monument · Castle Rock · Black Forest · Falcon · Parker</p></li>
+          </ul>
+        </div>
+        <form class="form" id="contact-form" novalidate>
+          <div class="form__row">
+            <label class="field"><span>Name</span><input type="text" name="name" required autocomplete="name" /></label>
+            <label class="field"><span>Phone</span><input type="tel" name="phone" required autocomplete="tel" /></label>
+          </div>
+          <label class="field"><span>Email</span><input type="email" name="email" required autocomplete="email" /></label>
+          <div class="form__row">
+            <label class="field field--select"><span>Service</span>
+              <select name="service">
+                <option>Free Model Design</option>
+                <option>Kitchen &amp; Bathroom Design</option>
+                <option>Finished Basement Design</option>
+                <option>Home Staging for Resale</option>
+                <option>Property Setup</option>
+              </select>
+            </label>
+            <label class="field"><span>Property location</span><input type="text" name="location" placeholder="e.g. Monument, CO" /></label>
+          </div>
+          <label class="field"><span>Tell us about the space</span><textarea name="message" rows="4"></textarea></label>
+          <button type="submit" class="btn btn--primary btn--full" data-magnetic data-cursor="hide">
+            <span class="btn__bg"></span><span class="btn__text">Request my free model design</span><span class="btn__icon">→</span>
+          </button>
+          <p class="form__note">We reply within one business day. Or call <a href="tel:7202444110">720-244-4110</a>.</p>
+          <div class="form__success" id="form-success">
+            <strong>Thank you.</strong><span>We'll be in touch within one business day.</span>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="footer">
+    <div class="footer__big" id="footer-big" aria-hidden="true">
+      <span>DH Designer</span>
+    </div>
+    <div class="container footer__grid">
+      <div class="footer__col">
+        <span class="footer__logo">DH <em>Designer</em></span>
+        <p>Interior design, staging and property setup for the Pikes Peak region.</p>
+      </div>
+      <div class="footer__col">
+        <span class="footer__h">Services</span>
+        <a href="#services">Free Model Design</a>
+        <a href="#services">Kitchen &amp; Bathroom Design</a>
+        <a href="#services">Finished Basement Design</a>
+        <a href="#services">Home Staging for Resale</a>
+        <a href="#services">Property Setup</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__h">Areas</span>
+        <a href="#areas">Colorado Springs</a>
+        <a href="#areas">Monument</a>
+        <a href="#areas">Castle Rock</a>
+        <a href="#areas">Black Forest · Falcon</a>
+        <a href="#areas">Parker · El Paso County</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__h">Contact</span>
+        <a href="tel:7202444110">720-244-4110</a>
+        <p>Colorado Springs, CO</p>
+        <a href="#top" class="footer__top" data-magnetic>Back to top ↑</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© <span id="year"></span> DH Designer. All rights reserved.</span>
+      <span>Designed with intention in Colorado Springs.</span>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>
